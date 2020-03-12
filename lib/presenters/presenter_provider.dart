@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'presenter_base.dart';
 
-T provider<T extends PresenterBase>() {}
+//T provider<T extends PresenterBase>() {}
 
 class PresenterProvider<T extends PresenterBase>
     extends StatefulWidget {
