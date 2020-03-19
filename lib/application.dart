@@ -51,12 +51,6 @@ class _ApplicationState extends State<Application> {
               return res;
             }
             switch (settings.name) {
-              case '/Authorization':
-                res = pages.Authorization();
-                break;
-              case '/Main':
-                res = pages.Main();
-                break;
               case '/Initial':
                 res = PresenterProvider<presenters.Initial>(
                   child: pages.Initial(),
@@ -67,7 +61,7 @@ class _ApplicationState extends State<Application> {
                   },
                 );
                 break;
-              case '/Main/ToDoList':
+              case '/ToDoList':
                 res = PresenterProvider<presenters.ToDoList>(
                   child: pages.ToDoList(),
                   presenter: presenters.ToDoList(),
@@ -77,7 +71,7 @@ class _ApplicationState extends State<Application> {
                   },
                 );
                 break;
-              case '/Main/ToDoList/ToDoEdit':
+              case '/ToDoList/ToDoEdit':
                 res = PresenterProvider<presenters.ToDoEdit>(
                   child: pages.ToDoEdit(),
                   presenter: presenters.ToDoEdit.edit(settings.arguments),
@@ -87,7 +81,7 @@ class _ApplicationState extends State<Application> {
                   },
                 );
                 break;
-              case '/Main/ToDoList/ToDoCreate':
+              case '/ToDoList/ToDoCreate':
                 res = PresenterProvider<presenters.ToDoEdit>(
                   child: pages.ToDoEdit(),
                   presenter: presenters.ToDoEdit(),
@@ -96,9 +90,6 @@ class _ApplicationState extends State<Application> {
                     _routesCache.remove(routeName);
                   },
                 );
-                break;
-              default:
-                return res = pages.Dummy(settings.name);
                 break;
             }
             _routesCache[settings.name] = res;

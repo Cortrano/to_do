@@ -28,16 +28,3 @@ class SembastDataBase extends IDatabase {
     });
   }
 }
-
-class DatabaseDummy extends IDatabase{
-  @override
-  void initStorage(String localPath, void Function() onInitiated) {
-    // TODO: implement initStorage
-  }
-
-  ToDoItemDummy _toDoItemRepository = new ToDoItemDummy();
-  ToDoItemRepository get toDoItemRepository => _toDoItemRepository;
-
-}
-
-

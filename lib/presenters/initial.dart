@@ -8,7 +8,7 @@ class InitiaEvent extends BaseInputEvent {}
 
 class InitialWireframe extends WireframeBase {
   void showApplication(){
-    navigator.pushReplacementNamed('/Main/ToDoList');
+    navigator.pushReplacementNamed('/ToDoList');
   }
 }
 class Initial extends PresenterBase<InitiaEvent, InitialWireframe> {

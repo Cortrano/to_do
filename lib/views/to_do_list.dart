@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do/components/main_drawer.dart';
 import '../presenters/to_do_list.dart' as bloc_presenters;
 import '../presenters/presenter_provider.dart';
 import '../interactor/data_stores/database/repositories/to_do_item.dart';
@@ -58,6 +59,7 @@ class ToDoList extends StatelessWidget {
         ],
         title: Text(Translation.of(context).text("to_do_list")),
       ),
+      drawer: MainDrawer(),
       body: ValueListenableBuilder(
           valueListenable: bloc.toDoItems,
           builder: (BuildContext context, List<ToDoItem> value, Widget child) {
