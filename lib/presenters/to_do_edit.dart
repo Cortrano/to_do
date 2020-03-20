@@ -37,29 +37,6 @@ class ToDoEdit extends PresenterBase<ToDoEditEvent, ToDoEditWireframe> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  final List<Color> colors = [
-    Color(0xFF662233),
-    Color(0xFF885566),
-    Color(0xFF330022),
-    Color(0xFF113322),
-    Color(0xFF336644),
-    Color(0xFF669944),
-    Color(0xFF112200),
-    Color(0xFF446611),
-    Color(0xFF99bb66),
-    Color(0xFF99aa22),
-    Color(0xFFccdd22),
-    Color(0xFFffffcc),
-    Color(0xFFeeee66),
-    Color(0xFFccbb88),
-    Color(0xFF776633),
-    Color(0xFFaa8855),
-    Color(0xFF332211),
-    Color(0xFFaa4433),
-    Color(0xFF663333),
-    Color(0xFF881111),
-  ];
-
   ToDoEdit():super(ToDoEditWireframe());
   ToDoEdit.edit(this.toDoItemId):super(ToDoEditWireframe());
   @override

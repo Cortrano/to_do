@@ -49,11 +49,11 @@ class ToDoListChangeEvent extends ToDoListEvent {
 
 class ToDoListWireframe extends WireframeBase {
   void showCreateItem() {
-    navigator.pushNamed('/Main/ToDoList/ToDoCreate');
+    navigator.pushNamed('/ToDoList/ToDoCreate');
   }
 
   void showEditItem(String id) {
-    navigator.pushNamed('/Main/ToDoList/ToDoEdit', arguments: id);
+    navigator.pushNamed('/ToDoList/ToDoEdit', arguments: id);
   }
 }
 
