@@ -10,12 +10,13 @@ abstract class BaseInputEvent {
 
 abstract class WireframeBase {
   NavigatorState navigator;
-  void initiate(BuildContext context){
+  void initiate(BuildContext context) {
     navigator = Navigator.of(context);
   }
 }
 
-abstract class PresenterBase<T extends BaseInputEvent, W extends WireframeBase> {
+abstract class PresenterBase<T extends BaseInputEvent,
+    W extends WireframeBase> {
   AccessorController _controller = new AccessorController();
 
   StreamController<T> _eventsStreamController = StreamController.broadcast();
@@ -39,7 +40,8 @@ abstract class PresenterBase<T extends BaseInputEvent, W extends WireframeBase> 
   void initiate();
   void addInputEventHandler<E extends T>(void handler(E event)) {
     _eventsStreamController.stream
-        .where((event) => (event is E)).cast<E>()
+        .where((event) => (event is E))
+        .cast<E>()
         .listen(handler);
   }
 
@@ -64,7 +66,9 @@ abstract class PresenterBase<T extends BaseInputEvent, W extends WireframeBase> 
   Stream<T> subscribeTo<T extends NotificationBase>(T notification) {
     _myNotifications.add(notification.id);
     _controller.addNotification(notification);
-    return _controller.notificationStream.where((notification) => _myNotifications.contains(notification.id)).cast<T>();
+    return _controller.notificationStream
+        .where((notification) => _myNotifications.contains(notification.id))
+        .cast<T>();
   }
 
   void dispose() {

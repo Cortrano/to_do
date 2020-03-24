@@ -58,7 +58,8 @@ class ToDoListWireframe extends WireframeBase {
 
 enum Filter { all, done, todo }
 
-class ToDoList extends PresenterBase<ToDoListEvent, ToDoListWireframe> with ChangeNotifier {
+class ToDoList extends PresenterBase<ToDoListEvent, ToDoListWireframe>
+    with ChangeNotifier {
   ToDoList() : super(ToDoListWireframe());
   Stream<notifications.ToDoListNotifier> toDoListNotificationsStream;
   ValueNotifier<Filter> filter = ValueNotifier(Filter.all);

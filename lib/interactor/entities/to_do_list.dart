@@ -13,10 +13,9 @@ abstract class IToDoList extends EntityBase {
   IToDoList(StreamController<EntityBase> controller) : super(controller);
   List<ToDoItem> get toDoList;
   LastChange get lastChange;
-void reset({List<ToDoItem> items});
-  ToDoItem addItem({String title, String description, int color, bool done});
-  ToDoItem changeItem(String id,
-      {String title, String description, int color, bool done});
+  void reset({List<ToDoItem> items});
+  ToDoItem addItem({String title, String description, bool done});
+  ToDoItem changeItem(String id, {String title, String description, bool done});
   ToDoItem removeItem(String id);
   void removeAll();
 }
@@ -25,8 +24,7 @@ class ToDoList extends IToDoList {
   List<ToDoItem> _toDoList = [];
   LastChange _lastChange = LastChange();
 
-  ToDoList(StreamController<EntityBase> controller)
-      : super(controller);
+  ToDoList(StreamController<EntityBase> controller) : super(controller);
 
   void reset({List<ToDoItem> items}) {
     _toDoList.clear();
@@ -48,11 +46,10 @@ class ToDoList extends IToDoList {
   List<ToDoItem> get toDoList => _toDoList;
   LastChange get lastChange => _lastChange;
 
-  ToDoItem addItem({String title, String description, int color, bool done}) {
+  ToDoItem addItem({String title, String description, bool done}) {
     ToDoItem res = new ToDoItem();
     if (title != null) res.title = title;
     if (description != null) res.description = description;
-    if (color != null) res.color = color;
     if (done != null) res.done = done;
     toDoList.add(res);
     lastChange.event = Event.add_item;
@@ -62,7 +59,7 @@ class ToDoList extends IToDoList {
   }
 
   ToDoItem changeItem(String id,
-      {String title, String description, int color, bool done}) {
+      {String title, String description, bool done}) {
     ToDoItem res;
     int index = toDoList.indexWhere((ToDoItem currentItem) {
       return currentItem.id == id;
@@ -71,7 +68,6 @@ class ToDoList extends IToDoList {
 
     if (title != null) res.title = title;
     if (description != null) res.description = description;
-    if (color != null) res.color = color;
     if (done != null) res.done = done;
 
     toDoList.replaceRange(index, index + 1, [res]);

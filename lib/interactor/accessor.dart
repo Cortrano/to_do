@@ -84,13 +84,13 @@ class Accessor extends Worker implements IAccessor {
     }
   }
 
-  void _runAction(ActionBase action){
-          action.doAction(this, (ActionBase result) {
-        send(result);
-      }); 
+  void _runAction(ActionBase action) {
+    action.doAction(this, (ActionBase result) {
+      send(result);
+    });
   }
 
-  void dispose(){
+  void dispose() {
     _controller.close();
   }
 }

@@ -5,11 +5,6 @@ import '../interactor/actions/action_base.dart' as actions;
 
 class ToDoEditEvent extends BaseInputEvent {}
 
-class SetColor extends ToDoEditEvent {
-  final int color;
-  SetColor({@required this.color});
-}
-
 class SaveItem extends ToDoEditEvent {
   SaveItem();
 }
@@ -20,22 +15,21 @@ class ChangeItemCount extends ToDoEditEvent {
 }
 
 class ToDoEditWireframe extends WireframeBase {
-  void hide(){
+  void hide() {
     navigator.pop();
   }
 }
 
 class ToDoEdit extends PresenterBase<ToDoEditEvent, ToDoEditWireframe> {
   String toDoItemId;
-  ValueNotifier<int> color = ValueNotifier(0xFFFFFFFF);
   ValueNotifier<int> itemCount = ValueNotifier(1);
   ValueNotifier<bool> busy = ValueNotifier(false);
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  ToDoEdit():super(ToDoEditWireframe());
-  ToDoEdit.edit(this.toDoItemId):super(ToDoEditWireframe());
+  ToDoEdit() : super(ToDoEditWireframe());
+  ToDoEdit.edit(this.toDoItemId) : super(ToDoEditWireframe());
   @override
   void initiate() {
     addInputEventHandler<SaveItem>((event) {
@@ -45,7 +39,6 @@ class ToDoEdit extends PresenterBase<ToDoEditEvent, ToDoEditWireframe> {
         execute(actions.AddToDoItem(
                 title: titleController.text,
                 description: descriptionController.text,
-                color: color.value,
                 count: itemCount.value))
             .whenComplete(() {
           busy.value = false;
@@ -55,7 +48,6 @@ class ToDoEdit extends PresenterBase<ToDoEditEvent, ToDoEditWireframe> {
           toDoItemId,
           title: titleController.text,
           description: descriptionController.text,
-          color: color.value,
         )).whenComplete(() {
           busy.value = false;
         });
@@ -74,7 +66,6 @@ class ToDoEdit extends PresenterBase<ToDoEditEvent, ToDoEditWireframe> {
         var action = actionBase as actions.GetToDoItem;
         titleController.text = action.item.title;
         descriptionController.text = action.item.description;
-        color.value = action.item.color;
         busy.value = false;
       });
     }

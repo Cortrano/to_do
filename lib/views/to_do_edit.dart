@@ -57,23 +57,6 @@ class ToDoEdit extends StatelessWidget {
                   ),
                 ),
               ),
-              // Divider(height: 5),
-              // Container(
-              //   height: 60,
-              //   child: ListView.builder(
-              //     scrollDirection: Axis.horizontal,
-              //     itemBuilder: (BuildContext context, int index) {
-              //       if (index >= bloc.colors.length) return null;
-              //       return SizedBox(
-              //         height: 55,
-              //         width: 55,
-              //         child: Card(
-              //           color: bloc.colors[index],
-              //         ),
-              //       );
-              //     },
-              //   ),
-              // )
             ],
           ),
         ));

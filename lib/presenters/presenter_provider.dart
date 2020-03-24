@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'presenter_base.dart';
 
-class PresenterProvider<T extends PresenterBase>
-    extends StatefulWidget {
+class PresenterProvider<T extends PresenterBase> extends StatefulWidget {
   PresenterProvider({
     Key key,
     @required this.child,
@@ -16,8 +15,7 @@ class PresenterProvider<T extends PresenterBase>
   final String route;
   final Function onDispose;
   @override
-  _ProviderState<T> createState() =>
-      _ProviderState<T>(route, onDispose);
+  _ProviderState<T> createState() => _ProviderState<T>(route, onDispose);
 
   static T of<T extends PresenterBase>(BuildContext context) {
     final type = _typeOf<PresenterProvider<T>>();
@@ -28,8 +26,7 @@ class PresenterProvider<T extends PresenterBase>
   static Type _typeOf<T>() => T;
 }
 
-class _ProviderState<T>
-    extends State<PresenterProvider<PresenterBase>> {
+class _ProviderState<T> extends State<PresenterProvider<PresenterBase>> {
   final String route;
   final Function onDispose;
 

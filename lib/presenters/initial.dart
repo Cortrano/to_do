@@ -6,19 +6,21 @@ import '../interactor/actions/initial_storage.dart' as actions;
 class InitiaEvent extends BaseInputEvent {}
 
 class InitialWireframe extends WireframeBase {
-  void showApplication(){
+  void showApplication() {
     navigator.pushReplacementNamed('/ToDoList');
   }
 }
+
 class Initial extends PresenterBase<InitiaEvent, InitialWireframe> {
-  Initial():super(InitialWireframe());
+  Initial() : super(InitialWireframe());
   @override
   void initiate() {
     print("void initiate(BuildContext context)");
-    getApplicationDocumentsDirectory().then((Directory dir){
-      execute<actions.InitialStorage>(actions.InitialStorage(dir.path)).whenComplete((){
+    getApplicationDocumentsDirectory().then((Directory dir) {
+      execute<actions.InitialStorage>(actions.InitialStorage(dir.path))
+          .whenComplete(() {
         wireframe.showApplication();
       });
-    }); 
+    });
   }
 }

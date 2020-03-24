@@ -6,12 +6,11 @@ class AddToDoItem extends ActionBase {
   ToDoItem item;
   final String title;
   final String description;
-  final int color;
   final bool done;
   final int count;
 
   AddToDoItem(
-      {this.title, this.description, this.color, this.done = false, this.count = 1});
+      {this.title, this.description, this.done = false, this.count = 1});
 
   @override
   void doAction(IAccessor accessor, void onComplete(ActionBase result)) async {
@@ -20,7 +19,7 @@ class AddToDoItem extends ActionBase {
 
     for (int i = 0; i < count; ++i) {
       item = toDoList.addItem(
-          title: title, description: description, color: color, done: done);
+          title: title, description: description, done: done);
       await storage.toDoItemRepository.add(item);
     }
 
@@ -33,18 +32,17 @@ class EditToDoItem extends ActionBase {
   final String itemId;
   final String title;
   final String description;
-  final int color;
   final bool done;
 
   EditToDoItem(this.itemId,
-      {this.title, this.description, this.color, this.done});
+      {this.title, this.description, this.done});
 
   @override
   void doAction(IAccessor accessor, void onComplete(ActionBase result)) async {
     IDatabase storage = accessor.database;
     IToDoList toDoList = accessor.toDoList;
     item = toDoList.changeItem(itemId,
-        title: title, description: description, color: color, done: done);
+        title: title, description: description, done: done);
     await storage.toDoItemRepository.edit(item);
     onComplete(this);
   }

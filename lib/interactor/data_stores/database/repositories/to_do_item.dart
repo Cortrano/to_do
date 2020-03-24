@@ -14,7 +14,6 @@ final String toDoItemsKey = 'to_do_items';
 final String idKey = 'id_to_do';
 final String titleKey = 'title';
 final String descriptionKey = 'description';
-final String colorKey = 'color';
 final String doneKey = 'done';
 
 class SembastToDoItemRepository implements ToDoItemRepository {
@@ -27,7 +26,6 @@ class SembastToDoItemRepository implements ToDoItemRepository {
       idKey: item.id,
       titleKey: item.title,
       descriptionKey: item.description,
-      colorKey: item.color,
       doneKey: item.done
     };
     var oldToDoItem = await _database.db.get(item.id) as Map;
@@ -48,7 +46,6 @@ class SembastToDoItemRepository implements ToDoItemRepository {
       idKey: item.id,
       titleKey: item.title,
       descriptionKey: item.description,
-      colorKey: item.color,
       doneKey: item.done
     };
 
@@ -62,7 +59,8 @@ class SembastToDoItemRepository implements ToDoItemRepository {
 
   Future<List<ToDoItem>> getAll() async {
     List<ToDoItem> res = [];
-    var allKeys = await _database.db.findKeys(Finder(filter: Filter.matches(idKey, "todoitem_")));
+    var allKeys = await _database.db
+        .findKeys(Finder(filter: Filter.matches(idKey, "todoitem_")));
     print("all keys: $allKeys");
     if (allKeys == null) return res;
 
@@ -72,7 +70,6 @@ class SembastToDoItemRepository implements ToDoItemRepository {
       toDoItem.id = toDoItemMap[idKey];
       toDoItem.title = toDoItemMap[titleKey];
       toDoItem.description = toDoItemMap[descriptionKey];
-      toDoItem.color = toDoItemMap[colorKey];
       toDoItem.done = toDoItemMap[doneKey];
       res.add(toDoItem);
     }
@@ -81,11 +78,11 @@ class SembastToDoItemRepository implements ToDoItemRepository {
 
   Future removeAll() async {
     List<ToDoItem> res = [];
-    var allKeys = await _database.db.findKeys(Finder(filter: Filter.matches("todoitem_", '')));
+    var allKeys = await _database.db
+        .findKeys(Finder(filter: Filter.matches("todoitem_", '')));
 
     if (allKeys == null) return res;
     await _database.db.clear();
     return res;
   }
 }
-

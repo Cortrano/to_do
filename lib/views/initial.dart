@@ -7,7 +7,7 @@ class Initial extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc_presenters.Initial bloc = PresenterProvider.of<bloc_presenters.Initial>(context);
 
-    return Scaffold(
+     return Scaffold(
       body: Center(
         child: Icon(Icons.check_box, size: 60),
       )
