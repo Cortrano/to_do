@@ -1,4 +1,3 @@
-import '../entities/entity_base.dart';
 import '../accessor.dart';
 
 abstract class ActionBase{

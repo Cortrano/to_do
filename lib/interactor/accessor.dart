@@ -1,6 +1,7 @@
 import "dart:async";
 import 'dart:isolate';
 import 'package:gate/gate.dart';
+import 'package:to_do/interactor/entities/to_do_item.dart';
 import 'entities/index.dart' as entities;
 import 'data_stores/index.dart' as data_stores;
 
@@ -11,18 +12,13 @@ export 'entities/index.dart';
 
 abstract class IAccessor {
   data_stores.IDatabase get database;
-  entities.IAccount get account;
   entities.IToDoList get toDoList;
 
   void initialize();
-
-  // void _runAction(ActionBase action);
-  // void _testNotification(NotificationBase notification, entities.EntityBase entity);
 }
 
 class Accessor extends Worker implements IAccessor {
   data_stores.IDatabase _database;
-  entities.IAccount _account;
   entities.IToDoList _toDoList;
   List<NotificationBase> _notifications = [];
   StreamController<entities.EntityBase> _controller =
@@ -42,13 +38,6 @@ class Accessor extends Worker implements IAccessor {
     return _database;
   }
 
-  entities.IAccount get account {
-    if (_account == null) {
-      _account = new entities.Account(_controller, database);
-    }
-    return _account;
-  }
-
   entities.IToDoList get toDoList {
     if (_toDoList == null) {
       _toDoList = new entities.ToDoList(_controller);
@@ -59,7 +48,7 @@ class Accessor extends Worker implements IAccessor {
   void initialize() async {
     data_stores.SembastToDoItemRepository repo =
         new data_stores.SembastToDoItemRepository(_database);
-    List<data_stores.ToDoItem> list = await repo.getAll();
+    List<ToDoItem> list = await repo.getAll();
     toDoList.reset(items: list);
   }
 
@@ -101,10 +90,7 @@ class Accessor extends Worker implements IAccessor {
       }); 
   }
 
-  // void _testNotificationOnActiveModels(NotificationBase notification) {
-  //   if (_activeModels.isEmpty) return;
-  //   for (entities.EntityBase entity in _activeModels) {
-  //     _testNotification(notification, entity);
-  //   }
-  // }
+  void dispose(){
+    _controller.close();
+  }
 }

@@ -6,13 +6,12 @@ class GetLocalization extends ActionBase{
 
   String get localization => _localization;
   @override
-  void doAction(IAccessor accessor, void onCompleate(ActionBase result)){
+  void doAction(IAccessor accessor, void onComplete(ActionBase result)){
     IDatabase storage = accessor.database;
-
     // storage.executeCommand(StorageCommand.GetLocalization(onEnd: (data){
     //   if(data == null) return;
     //   _localization = data as String;
-    //   onCompleate(this);
+    //   onComplete(this);
     // }));
   }
  String _localization = "";

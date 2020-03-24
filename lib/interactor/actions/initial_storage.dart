@@ -5,11 +5,11 @@ class InitialStorage extends ActionBase{
   InitialStorage(this._localPath);
 
   @override
-  void doAction(IAccessor accessor, void onCompleate(ActionBase result)){
+  void doAction(IAccessor accessor, void onComplete(ActionBase result)){
     IDatabase database = accessor.database;
     database.initStorage(_localPath, (){
       accessor.initialize();
-      onCompleate(this);
+      onComplete(this);
     });
   }
   String _localPath;

@@ -4,7 +4,6 @@ import '../interactor/accessor_controller.dart';
 import '../interactor/actions/action_base.dart';
 import '../interactor/notifications/notification_base.dart';
 
-
 abstract class BaseInputEvent {
   BaseInputEvent();
 }

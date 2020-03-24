@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../presenters/to_do_edit.dart' as bloc_presenters;
 import '../presenters/presenter_provider.dart';
-import '../interactor/data_stores/database/repositories/to_do_item.dart';
 import '../utilities/translations/apptranslations.dart';
 
 class ToDoEdit extends StatelessWidget {

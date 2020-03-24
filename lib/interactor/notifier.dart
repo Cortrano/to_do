@@ -9,4 +9,8 @@ class Notifier<T> {
   void notify(T data){
     controller.sink.add(data);
   }
+
+  void dispose(){
+    controller.close();
+  }
 }

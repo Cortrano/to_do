@@ -1,7 +1,7 @@
 import 'package:sembast/sembast.dart';
 import 'package:uuid/uuid.dart';
 
-class ProductItem {
+abstract class ProductItemRepository {
    String id = "productitem_${Uuid().v4()}";
    String title = "";
    String description = "";

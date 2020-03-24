@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:to_do/interactor/entities/to_do_item.dart';
 import 'presenter_base.dart';
 import '../interactor/actions/to_do.dart' as actions;
 import '../interactor/notifications/to_do_list_notifier.dart' as notifications;
-import '../interactor/notifications/notification_base.dart';
-import '../interactor/data_stores/database/repositories/to_do_item.dart';
 import '../interactor/entities/to_do_list.dart' as to_do_list;
 
 class ToDoListEvent extends BaseInputEvent {}
@@ -59,7 +58,7 @@ class ToDoListWireframe extends WireframeBase {
 
 enum Filter { all, done, todo }
 
-class ToDoList extends PresenterBase<ToDoListEvent, ToDoListWireframe> {
+class ToDoList extends PresenterBase<ToDoListEvent, ToDoListWireframe> with ChangeNotifier {
   ToDoList() : super(ToDoListWireframe());
   Stream<notifications.ToDoListNotifier> toDoListNotificationsStream;
   ValueNotifier<Filter> filter = ValueNotifier(Filter.all);

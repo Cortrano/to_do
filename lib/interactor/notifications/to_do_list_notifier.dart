@@ -1,7 +1,6 @@
 import 'notification_base.dart';
 import '../entities/entity_base.dart';
 import '../entities/to_do_list.dart';
-import '../data_stores/database/repositories/to_do_item.dart';
 
 class ToDoListNotifier extends NotificationBase {
   LastChange change;

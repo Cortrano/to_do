@@ -1,14 +1,6 @@
 import 'package:sembast/sembast.dart';
-import 'package:uuid/uuid.dart';
 import '../database.dart';
-
-class ToDoItem {
-  String id = "todoitem_${Uuid().v4()}";
-  String title = "";
-  String description = "";
-  int color = 0xFFFFFFFF;
-  bool done = false;
-}
+import '../../../entities/to_do_item.dart';
 
 abstract class ToDoItemRepository {
   Future add(ToDoItem item);

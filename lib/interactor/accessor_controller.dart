@@ -90,5 +90,8 @@ class AccessorController extends Controller {
     new Accessor(sendPort).work();
   }
 
-
+  void dispose(){
+    _controller.close();
+    _actionController.close();
+  }
 }

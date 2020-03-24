@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'presenter_base.dart';
 import '../interactor/actions/to_do.dart' as actions;
 import '../interactor/actions/action_base.dart' as actions;
-import '../interactor/notifications/to_do_list_notifier.dart' as notifications;
-import '../interactor/notifications/notification_base.dart';
-import '../interactor/data_stores/database/repositories/to_do_item.dart';
 
 class ToDoEditEvent extends BaseInputEvent {}
 

@@ -1,6 +1,6 @@
+import 'package:to_do/interactor/entities/to_do_item.dart';
 import 'action_base.dart';
 import '../accessor.dart';
-import '../data_stores/database/repositories/to_do_item.dart';
 
 class AddToDoItem extends ActionBase {
   ToDoItem item;
@@ -14,7 +14,7 @@ class AddToDoItem extends ActionBase {
       {this.title, this.description, this.color, this.done = false, this.count = 1});
 
   @override
-  void doAction(IAccessor accessor, void onCompleate(ActionBase result)) async {
+  void doAction(IAccessor accessor, void onComplete(ActionBase result)) async {
     IDatabase storage = accessor.database;
     IToDoList toDoList = accessor.toDoList;
 
@@ -24,7 +24,7 @@ class AddToDoItem extends ActionBase {
       await storage.toDoItemRepository.add(item);
     }
 
-    onCompleate(this);
+    onComplete(this);
   }
 }
 
@@ -40,13 +40,13 @@ class EditToDoItem extends ActionBase {
       {this.title, this.description, this.color, this.done});
 
   @override
-  void doAction(IAccessor accessor, void onCompleate(ActionBase result)) async {
+  void doAction(IAccessor accessor, void onComplete(ActionBase result)) async {
     IDatabase storage = accessor.database;
     IToDoList toDoList = accessor.toDoList;
     item = toDoList.changeItem(itemId,
         title: title, description: description, color: color, done: done);
     await storage.toDoItemRepository.edit(item);
-    onCompleate(this);
+    onComplete(this);
   }
 }
 
@@ -55,12 +55,12 @@ class RemoveToDoItem extends ActionBase {
   RemoveToDoItem(this.itemId);
 
   @override
-  void doAction(IAccessor accessor, void onCompleate(ActionBase result)) async {
+  void doAction(IAccessor accessor, void onComplete(ActionBase result)) async {
     IDatabase storage = accessor.database;
     IToDoList toDoList = accessor.toDoList;
     ToDoItem item = toDoList.removeItem(itemId);
     await storage.toDoItemRepository.remove(item);
-    onCompleate(this);
+    onComplete(this);
   }
 }
 
@@ -68,12 +68,12 @@ class RemoveAllToDoItem extends ActionBase {
   RemoveAllToDoItem();
 
   @override
-  void doAction(IAccessor accessor, void onCompleate(ActionBase result)) async {
+  void doAction(IAccessor accessor, void onComplete(ActionBase result)) async {
     IDatabase storage = accessor.database;
     IToDoList toDoList = accessor.toDoList;
     toDoList.removeAll();
     await storage.toDoItemRepository.removeAll();
-    onCompleate(this);
+    onComplete(this);
   }
 }
 
@@ -83,12 +83,12 @@ class GetToDoItem extends ActionBase {
 
   GetToDoItem(this.itemId);
   @override
-  void doAction(IAccessor accessor, void onCompleate(ActionBase result)) {
+  void doAction(IAccessor accessor, void onComplete(ActionBase result)) {
     IToDoList toDoList = accessor.toDoList;
     item = toDoList.toDoList.firstWhere((ToDoItem currentItem) {
       return currentItem.id == itemId;
     });
-    onCompleate(this);
+    onComplete(this);
   }
 }
 
@@ -98,11 +98,11 @@ class GetToDoList extends ActionBase {
 
   GetToDoList({this.done});
   @override
-  void doAction(IAccessor accessor, void onCompleate(ActionBase result)) {
+  void doAction(IAccessor accessor, void onComplete(ActionBase result)) {
     if(done == null){
     IToDoList toDoList = accessor.toDoList;
     items = toDoList.toDoList;
-    onCompleate(this);
+    onComplete(this);
     return;
     } else {
       for(ToDoItem item in accessor.toDoList.toDoList){
@@ -110,7 +110,7 @@ class GetToDoList extends ActionBase {
           items.add(item);
         }
       }
-      onCompleate(this);
+      onComplete(this);
       return;
     }
   }

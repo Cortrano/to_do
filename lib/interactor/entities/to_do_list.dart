@@ -1,7 +1,6 @@
 import 'dart:async';
+import 'package:to_do/interactor/entities/to_do_item.dart';
 import 'entity_base.dart';
-import '../data_stores/database/database.dart';
-import '../data_stores/database/repositories/to_do_item.dart';
 
 enum Event { add_item, change_item, remove_item, remove_all, reset, unknown }
 
